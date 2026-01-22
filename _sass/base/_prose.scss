@@ -186,10 +186,13 @@
   .mermaid {
     margin: var(--space-6) 0;
     text-align: center;
+    overflow-x: auto;
 
     svg {
-      max-width: 100%;
-      height: auto;
+      max-width: none !important;
+      height: auto !important;
+      display: block;
+      margin: 0 auto;
     }
   }
 
