@@ -1,11 +1,11 @@
 // ============================================
 // ABSTRACTS INDEX
-// Forward all abstract modules
+// Import all abstract modules
 // ============================================
 
-@forward 'colors';
-@forward 'typography';
-@forward 'breakpoints';
-@forward 'variables';
-@forward 'mixins';
-@forward 'animations';
+@import 'colors';
+@import 'typography';
+@import 'breakpoints';
+@import 'variables';
+@import 'mixins';
+@import 'animations';

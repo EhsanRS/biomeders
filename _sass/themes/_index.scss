@@ -1,7 +1,7 @@
 // ============================================
 // THEMES INDEX
-// Forward all theme modules
+// Import all theme modules
 // ============================================
 
-@forward 'light';
-@forward 'dark';
+@import 'light';
+@import 'dark';

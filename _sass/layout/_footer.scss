@@ -2,8 +2,6 @@
 // SITE FOOTER
 // ============================================
 
-@use '../abstracts/mixins' as *;
-
 .site-footer {
   background-color: var(--bg-muted);
   border-top: 1px solid var(--border-default);

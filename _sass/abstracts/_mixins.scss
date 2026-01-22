@@ -3,8 +3,8 @@
 // Mobile-first approach
 // ============================================
 
-@use 'breakpoints' as *;
-@use 'variables' as *;
+@import 'breakpoints';
+@import 'variables';
 
 // Breakpoint mixin (min-width, mobile-first)
 @mixin breakpoint($size) {

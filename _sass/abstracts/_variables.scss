@@ -2,9 +2,9 @@
 // CSS CUSTOM PROPERTIES GENERATION
 // ============================================
 
-@use 'colors' as *;
-@use 'typography' as *;
-@use 'breakpoints' as *;
+@import 'colors';
+@import 'typography';
+@import 'breakpoints';
 
 // Spacing Scale (based on 4px grid)
 $spacing: (

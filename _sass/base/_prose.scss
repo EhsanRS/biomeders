@@ -3,8 +3,6 @@
 // Optimized for reading scientific articles
 // ============================================
 
-@use '../abstracts/mixins' as *;
-
 .prose {
   @include body-text;
   max-width: var(--content-prose);

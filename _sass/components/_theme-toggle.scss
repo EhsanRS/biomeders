@@ -3,8 +3,6 @@
 // Dark mode toggle button
 // ============================================
 
-@use '../abstracts/mixins' as *;
-
 .theme-toggle {
   @include button-reset;
   display: flex;

@@ -2,8 +2,6 @@
 // BUTTON COMPONENTS
 // ============================================
 
-@use '../abstracts/mixins' as *;
-
 // Base button
 .btn {
   @include button-reset;

@@ -1,9 +1,9 @@
 // ============================================
 // LAYOUT INDEX
-// Forward all layout modules
+// Import all layout modules
 // ============================================
 
-@forward 'container';
-@forward 'header';
-@forward 'footer';
-@forward 'article';
+@import 'container';
+@import 'header';
+@import 'footer';
+@import 'article';

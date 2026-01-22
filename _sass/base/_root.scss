@@ -3,51 +3,49 @@
 // This file generates all CSS variables
 // ============================================
 
-@use '../abstracts/colors' as colors;
-@use '../abstracts/typography' as typography;
-@use '../abstracts/variables' as variables;
+// Variables are already imported via abstracts/_index.scss
 
 :root {
   // Color scheme declaration
   color-scheme: light dark;
 
   // === TYPOGRAPHY ===
-  --font-primary: #{typography.$font-family-primary};
-  --font-code: #{typography.$font-family-code};
-  --font-display: #{typography.$font-family-display};
+  --font-primary: #{$font-family-primary};
+  --font-code: #{$font-family-code};
+  --font-display: #{$font-family-display};
 
   // Font Sizes
-  @each $name, $value in typography.$type-scale {
+  @each $name, $value in $type-scale {
     --text-#{$name}: #{$value};
   }
 
   // Line Heights
-  @each $name, $value in typography.$line-heights {
+  @each $name, $value in $line-heights {
     --leading-#{$name}: #{$value};
   }
 
   // Font Weights
-  @each $name, $value in typography.$font-weights {
+  @each $name, $value in $font-weights {
     --font-#{$name}: #{$value};
   }
 
   // === SPACING ===
-  @each $name, $value in variables.$spacing {
+  @each $name, $value in $spacing {
     --space-#{$name}: #{$value};
   }
 
   // === BORDER RADIUS ===
-  @each $name, $value in variables.$radii {
+  @each $name, $value in $radii {
     --radius-#{$name}: #{$value};
   }
 
   // === Z-INDEX ===
-  @each $name, $value in variables.$z-layers {
+  @each $name, $value in $z-layers {
     --z-#{$name}: #{$value};
   }
 
   // === SHADOWS ===
-  @each $name, $value in variables.$shadows {
+  @each $name, $value in $shadows {
     --shadow-#{$name}: #{$value};
   }
 
@@ -65,7 +63,7 @@
   --content-max: 1400px;
 
   // === LIGHT THEME (default) ===
-  @each $name, $value in colors.$light-colors {
+  @each $name, $value in $light-colors {
     --#{$name}: #{$value};
   }
 }
@@ -75,7 +73,7 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  @each $name, $value in colors.$dark-colors {
+  @each $name, $value in $dark-colors {
     --#{$name}: #{$value};
   }
 }
@@ -85,7 +83,7 @@
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    @each $name, $value in colors.$dark-colors {
+    @each $name, $value in $dark-colors {
       --#{$name}: #{$value};
     }
   }

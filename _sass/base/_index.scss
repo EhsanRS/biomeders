@@ -1,10 +1,10 @@
 // ============================================
 // BASE INDEX
-// Forward all base modules
+// Import all base modules
 // ============================================
 
-@forward 'reset';
-@forward 'root';
-@forward 'base';
-@forward 'prose';
-@forward 'utilities';
+@import 'reset';
+@import 'root';
+@import 'base';
+@import 'prose';
+@import 'utilities';

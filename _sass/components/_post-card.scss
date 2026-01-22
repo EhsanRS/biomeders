@@ -3,8 +3,6 @@
 // Blog post preview cards for listings
 // ============================================
 
-@use '../abstracts/mixins' as *;
-
 .post-card {
   display: flex;
   flex-direction: column;

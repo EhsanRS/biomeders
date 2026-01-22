@@ -3,8 +3,6 @@
 // Note, Warning, Tip, Important, Example
 // ============================================
 
-@use '../abstracts/mixins' as *;
-
 .callout {
   position: relative;
   margin: var(--space-6) 0;
