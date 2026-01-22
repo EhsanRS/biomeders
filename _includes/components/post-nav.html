@@ -1,0 +1,62 @@
+{% comment %}
+  Previous/Next post navigation
+
+  Usage:
+  {% include components/post-nav.html %}
+{% endcomment %}
+
+{% assign sorted_posts = site.posts | sort: 'date' %}
+{% assign post_index = nil %}
+
+{% for post in sorted_posts %}
+  {% if post.url == page.url %}
+    {% assign post_index = forloop.index0 %}
+  {% endif %}
+{% endfor %}
+
+{% if post_index != nil %}
+  {% assign prev_index = post_index | minus: 1 %}
+  {% assign next_index = post_index | plus: 1 %}
+
+  {% if prev_index >= 0 %}
+    {% assign prev_post = sorted_posts[prev_index] %}
+  {% endif %}
+
+  {% if next_index < sorted_posts.size %}
+    {% assign next_post = sorted_posts[next_index] %}
+  {% endif %}
+{% endif %}
+
+{% if prev_post or next_post %}
+<nav class="post-nav" aria-label="Post navigation">
+  {% if prev_post %}
+  <a href="{{ prev_post.url | relative_url }}" class="post-nav__link post-nav__link--prev" rel="prev">
+    <span class="post-nav__label">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Previous
+    </span>
+    <span class="post-nav__title">{{ prev_post.title | escape }}</span>
+  </a>
+  {% else %}
+  <span class="post-nav__link post-nav__link--prev post-nav__link--disabled"></span>
+  {% endif %}
+
+  {% if next_post %}
+  <a href="{{ next_post.url | relative_url }}" class="post-nav__link post-nav__link--next" rel="next">
+    <span class="post-nav__label">
+      Next
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </span>
+    <span class="post-nav__title">{{ next_post.title | escape }}</span>
+  </a>
+  {% else %}
+  <span class="post-nav__link post-nav__link--next post-nav__link--disabled"></span>
+  {% endif %}
+</nav>
+{% endif %}

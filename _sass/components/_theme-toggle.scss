@@ -1,0 +1,82 @@
+// ============================================
+// THEME TOGGLE COMPONENT
+// Dark mode toggle button
+// ============================================
+
+@use '../abstracts/mixins' as *;
+
+.theme-toggle {
+  @include button-reset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  @include transition-colors;
+
+  &:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-muted);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  // Icons container
+  &__icon {
+    width: 20px;
+    height: 20px;
+    @include transition-transform;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    // Sun icon (shown in light mode)
+    &--light {
+      display: block;
+    }
+
+    // Moon icon (shown in dark mode)
+    &--dark {
+      display: none;
+    }
+  }
+
+  // Hover animation
+  &:hover &__icon {
+    transform: rotate(15deg);
+  }
+}
+
+// Dark mode: swap icons
+[data-theme="dark"] {
+  .theme-toggle {
+    &__icon--light {
+      display: none;
+    }
+
+    &__icon--dark {
+      display: block;
+    }
+  }
+}
+
+// System preference dark mode (when no explicit theme set)
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    .theme-toggle {
+      &__icon--light {
+        display: none;
+      }
+
+      &__icon--dark {
+        display: block;
+      }
+    }
+  }
+}

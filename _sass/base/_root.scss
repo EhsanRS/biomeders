@@ -1,0 +1,92 @@
+// ============================================
+// ROOT CSS CUSTOM PROPERTIES
+// This file generates all CSS variables
+// ============================================
+
+@use '../abstracts/colors' as colors;
+@use '../abstracts/typography' as typography;
+@use '../abstracts/variables' as variables;
+
+:root {
+  // Color scheme declaration
+  color-scheme: light dark;
+
+  // === TYPOGRAPHY ===
+  --font-primary: #{typography.$font-family-primary};
+  --font-code: #{typography.$font-family-code};
+  --font-display: #{typography.$font-family-display};
+
+  // Font Sizes
+  @each $name, $value in typography.$type-scale {
+    --text-#{$name}: #{$value};
+  }
+
+  // Line Heights
+  @each $name, $value in typography.$line-heights {
+    --leading-#{$name}: #{$value};
+  }
+
+  // Font Weights
+  @each $name, $value in typography.$font-weights {
+    --font-#{$name}: #{$value};
+  }
+
+  // === SPACING ===
+  @each $name, $value in variables.$spacing {
+    --space-#{$name}: #{$value};
+  }
+
+  // === BORDER RADIUS ===
+  @each $name, $value in variables.$radii {
+    --radius-#{$name}: #{$value};
+  }
+
+  // === Z-INDEX ===
+  @each $name, $value in variables.$z-layers {
+    --z-#{$name}: #{$value};
+  }
+
+  // === SHADOWS ===
+  @each $name, $value in variables.$shadows {
+    --shadow-#{$name}: #{$value};
+  }
+
+  // === TRANSITIONS ===
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+  --transition-colors: color 200ms ease, background-color 200ms ease,
+                       border-color 200ms ease, fill 200ms ease;
+
+  // === CONTENT WIDTHS ===
+  --content-prose: 680px;
+  --content-wide: 900px;
+  --content-full: 1200px;
+  --content-max: 1400px;
+
+  // === LIGHT THEME (default) ===
+  @each $name, $value in colors.$light-colors {
+    --#{$name}: #{$value};
+  }
+}
+
+// === DARK THEME ===
+// Triggered by data attribute (user preference)
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  @each $name, $value in colors.$dark-colors {
+    --#{$name}: #{$value};
+  }
+}
+
+// System preference (when no explicit choice)
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    @each $name, $value in colors.$dark-colors {
+      --#{$name}: #{$value};
+    }
+  }
+}

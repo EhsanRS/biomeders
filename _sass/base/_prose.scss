@@ -1,0 +1,242 @@
+// ============================================
+// PROSE / LONG-FORM CONTENT TYPOGRAPHY
+// Optimized for reading scientific articles
+// ============================================
+
+@use '../abstracts/mixins' as *;
+
+.prose {
+  @include body-text;
+  max-width: var(--content-prose);
+
+  // Headings with anchor links
+  h2, h3, h4, h5, h6 {
+    position: relative;
+
+    .heading-anchor {
+      position: absolute;
+      left: -1.5em;
+      opacity: 0;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: var(--font-normal);
+      @include transition-opacity;
+
+      &:hover {
+        color: var(--accent-primary);
+      }
+    }
+
+    &:hover .heading-anchor {
+      opacity: 1;
+    }
+  }
+
+  // First paragraph (lead)
+  > p:first-of-type {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  // Links
+  a {
+    color: var(--link);
+    text-decoration: underline;
+    text-decoration-color: var(--link);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  // External links indicator
+  a[href^="http"]:not([href*="biomeders.nl"])::after {
+    content: " ↗";
+    font-size: 0.75em;
+    vertical-align: super;
+    opacity: 0.7;
+  }
+
+  // Figures
+  figure {
+    margin: var(--space-8) 0;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    figcaption {
+      margin-top: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      text-align: center;
+      font-style: italic;
+    }
+
+    // Wide figures
+    &.wide {
+      @include breakpoint('lg') {
+        margin-left: calc(-1 * var(--space-12));
+        margin-right: calc(-1 * var(--space-12));
+        max-width: calc(100% + var(--space-12) * 2);
+      }
+    }
+  }
+
+  // Tables
+  table {
+    width: 100%;
+    margin: var(--space-6) 0;
+    font-size: var(--text-sm);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+
+    th, td {
+      padding: var(--space-3) var(--space-4);
+      text-align: left;
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    th {
+      background-color: var(--bg-muted);
+      font-weight: var(--font-semibold);
+      color: var(--text-primary);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: var(--bg-muted);
+    }
+
+    // Numeric columns
+    td.numeric {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  // Footnotes
+  .footnotes {
+    margin-top: var(--space-12);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-default);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+
+    ol {
+      padding-left: var(--space-5);
+    }
+
+    li {
+      margin-bottom: var(--space-3);
+
+      &:target {
+        background-color: var(--warning-bg);
+        padding: var(--space-2);
+        margin: calc(-1 * var(--space-2));
+        border-radius: var(--radius-sm);
+      }
+    }
+
+    .reversefootnote {
+      margin-left: var(--space-2);
+      text-decoration: none;
+    }
+  }
+
+  // Footnote references
+  sup[id^="fnref"] {
+    a {
+      text-decoration: none;
+      color: var(--accent-primary);
+      font-weight: var(--font-semibold);
+
+      &::before {
+        content: "[";
+      }
+
+      &::after {
+        content: "]";
+      }
+    }
+  }
+
+  // Abbreviations
+  abbr {
+    text-decoration: underline dotted;
+    text-decoration-color: var(--text-muted);
+    cursor: help;
+  }
+
+  // Math blocks (KaTeX)
+  .katex-display {
+    margin: var(--space-6) 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: var(--space-4) 0;
+  }
+
+  // Mermaid diagrams
+  .mermaid {
+    margin: var(--space-6) 0;
+    text-align: center;
+
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  // Nested lists better spacing
+  li > ul,
+  li > ol {
+    margin-top: var(--space-2);
+    margin-bottom: 0;
+  }
+
+  // Task lists
+  ul.task-list {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-2);
+
+      input[type="checkbox"] {
+        flex-shrink: 0;
+        margin-top: 0.25em;
+      }
+    }
+  }
+
+  // Details/Summary
+  details {
+    margin: var(--space-4) 0;
+    padding: var(--space-4);
+    background-color: var(--bg-muted);
+    border-radius: var(--radius-lg);
+
+    summary {
+      font-weight: var(--font-semibold);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--accent-primary);
+      }
+    }
+
+    &[open] summary {
+      margin-bottom: var(--space-3);
+    }
+  }
+}

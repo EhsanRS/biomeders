@@ -1,0 +1,164 @@
+// ============================================
+// FIGURE COMPONENT
+// Images with captions and auto-numbering
+// ============================================
+
+@use '../abstracts/mixins' as *;
+
+.figure {
+  margin: var(--space-8) 0;
+
+  // Media container
+  &__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-muted);
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-lg);
+    }
+  }
+
+  // Caption
+  &__caption {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    text-align: center;
+  }
+
+  &__number {
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+  }
+
+  &__description {
+    display: inline;
+  }
+
+  &__source {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+
+    a {
+      color: var(--text-muted);
+
+      &:hover {
+        color: var(--accent-primary);
+      }
+    }
+  }
+
+  // Wide figure (extends beyond prose width)
+  &--wide {
+    @include breakpoint('lg') {
+      margin-left: calc(-1 * var(--space-12));
+      margin-right: calc(-1 * var(--space-12));
+      max-width: calc(100% + var(--space-12) * 2);
+    }
+  }
+
+  // Full-width figure
+  &--full {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    max-width: 100vw;
+
+    .figure__media {
+      border-radius: 0;
+
+      img {
+        border-radius: 0;
+      }
+    }
+
+    .figure__caption {
+      padding: 0 var(--space-4);
+    }
+  }
+
+  // Bordered figure
+  &--bordered {
+    .figure__media {
+      border: 1px solid var(--border-default);
+    }
+  }
+
+  // Shadow figure
+  &--shadow {
+    .figure__media {
+      box-shadow: var(--shadow-lg);
+    }
+  }
+}
+
+// Figure grid (multiple images)
+.figure-grid {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+
+  &--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &--3 {
+    grid-template-columns: repeat(2, 1fr);
+
+    @include breakpoint('md') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &--4 {
+    grid-template-columns: repeat(2, 1fr);
+
+    @include breakpoint('md') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .figure {
+    margin: 0;
+  }
+}
+
+// Lightbox trigger (if using lightbox)
+.figure--lightbox {
+  .figure__media {
+    cursor: zoom-in;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.3));
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+}
+
+// Auto-numbering with CSS counters
+article {
+  counter-reset: figure;
+}
+
+.figure[id^="fig-"] {
+  counter-increment: figure;
+
+  .figure__number::before {
+    content: "Figure " counter(figure) ": ";
+  }
+}

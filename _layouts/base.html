@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<head>
+  {% include head.html %}
+</head>
+<body class="{% if page.layout %}layout-{{ page.layout }}{% endif %}">
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  {% include header.html %}
+
+  <main id="main-content" class="site-main">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+  {% include scripts.html %}
+</body>
+</html>

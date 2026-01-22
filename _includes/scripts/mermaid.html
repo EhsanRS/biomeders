@@ -1,0 +1,45 @@
+<!-- Mermaid.js -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+  // Get current theme
+  const theme = document.documentElement.getAttribute('data-theme');
+  const mermaidTheme = theme === 'dark' ? 'dark' : 'default';
+
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: mermaidTheme,
+    securityLevel: 'loose',
+    fontFamily: 'Inter, system-ui, sans-serif'
+  });
+
+  // Re-render on theme change
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'data-theme') {
+        const newTheme = document.documentElement.getAttribute('data-theme');
+        const newMermaidTheme = newTheme === 'dark' ? 'dark' : 'default';
+
+        // Update mermaid config and re-render
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: newMermaidTheme,
+          securityLevel: 'loose',
+          fontFamily: 'Inter, system-ui, sans-serif'
+        });
+
+        // Re-render all mermaid diagrams by triggering mermaid.run()
+        // Store original code in data attribute for re-rendering
+        document.querySelectorAll('.mermaid').forEach((el) => {
+          const code = el.getAttribute('data-original') || el.textContent;
+          el.setAttribute('data-original', code);
+          el.removeAttribute('data-processed');
+          el.textContent = code;
+        });
+        mermaid.run();
+      }
+    });
+  });
+
+  observer.observe(document.documentElement, { attributes: true });
+</script>

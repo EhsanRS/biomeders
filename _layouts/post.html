@@ -1,0 +1,71 @@
+---
+layout: base
+---
+<div class="container">
+  {% if page.toc %}
+  <div class="article-with-toc">
+    <header class="article-header">
+      <h1 class="article-title">{{ page.title | escape }}</h1>
+      <div class="article-meta">
+        <span class="article-date">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+        </span>
+        {% assign words = content | number_of_words %}
+        {% assign minutes = words | divided_by: 200 %}
+        {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+        <span class="article-reading-time">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          {{ minutes }} min read
+        </span>
+      </div>
+    </header>
+
+    <div class="toc-wrapper" id="toc-wrapper">
+      <nav class="toc" aria-labelledby="toc-heading">
+        <h2 id="toc-heading" class="toc__title">Contents</h2>
+        <div id="toc-content"></div>
+      </nav>
+    </div>
+
+    <div class="article-content prose">
+      {{ content }}
+    </div>
+  </div>
+  {% else %}
+  <article class="article">
+    <header class="article-header">
+      <h1 class="article-title">{{ page.title | escape }}</h1>
+      <div class="article-meta">
+        <span class="article-date">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+        </span>
+        {% assign words = content | number_of_words %}
+        {% assign minutes = words | divided_by: 200 %}
+        {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+        <span class="article-reading-time">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          {{ minutes }} min read
+        </span>
+      </div>
+    </header>
+
+    <div class="article-content prose">
+      {{ content }}
+    </div>
+  </article>
+  {% endif %}
+
+  <footer class="article-footer container-prose">
+    {% if page.tags.size > 0 %}
+    <div class="article-tags">
+      {% for tag in page.tags %}
+      <a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}" class="tag">{{ tag }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% include components/post-nav.html %}
+  </footer>
+</div>

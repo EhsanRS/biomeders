@@ -1,0 +1,27 @@
+{% comment %}
+  Figure component with caption support
+
+  Usage:
+  {% include components/figure.html
+     src="/path/to/image.jpg"
+     alt="Image description"
+     caption="Optional caption text"
+     class="wide"
+  %}
+
+  Classes: wide, full, bordered, shadow
+{% endcomment %}
+
+<figure class="figure{% if include.class %} figure--{{ include.class }}{% endif %}">
+  <img
+    src="{{ include.src | relative_url }}"
+    alt="{{ include.alt | default: '' }}"
+    {% if include.width %}width="{{ include.width }}"{% endif %}
+    {% if include.height %}height="{{ include.height }}"{% endif %}
+    loading="lazy"
+    decoding="async"
+  >
+  {% if include.caption %}
+  <figcaption class="figure__caption">{{ include.caption | markdownify }}</figcaption>
+  {% endif %}
+</figure>

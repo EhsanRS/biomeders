@@ -1,0 +1,157 @@
+// ============================================
+// CONTAINER & LAYOUT UTILITIES
+// Content width and layout containers
+// ============================================
+
+@use '../abstracts/mixins' as *;
+
+// Site wrapper
+.site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// Main content area
+.site-main {
+  flex: 1;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-16);
+
+  @include breakpoint('md') {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-20);
+  }
+}
+
+// Container
+.container {
+  width: 100%;
+  max-width: var(--content-full);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+
+  @include breakpoint('md') {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+
+  @include breakpoint('lg') {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+// Prose container (optimal reading width)
+.container-prose {
+  @extend .container;
+  max-width: var(--content-prose);
+}
+
+// Wide container
+.container-wide {
+  @extend .container;
+  max-width: var(--content-wide);
+}
+
+// Full-width container
+.container-full {
+  @extend .container;
+  max-width: var(--content-max);
+}
+
+// Content wrapper for centering prose
+.content {
+  max-width: var(--content-prose);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Two-column layout (content + sidebar)
+.layout-with-sidebar {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "main"
+    "sidebar";
+
+  @include breakpoint('lg') {
+    grid-template-columns: 1fr 280px;
+    grid-template-areas: "main sidebar";
+    gap: var(--space-12);
+  }
+
+  @include breakpoint('xl') {
+    grid-template-columns: 1fr 320px;
+  }
+
+  .main-content {
+    grid-area: main;
+    min-width: 0; // Prevent overflow
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+  }
+}
+
+// Grid layouts for post listings
+.post-grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+
+  @include breakpoint('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint('xl') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Stack layout (vertical with consistent spacing)
+.stack {
+  display: flex;
+  flex-direction: column;
+
+  > * + * {
+    margin-top: var(--space-4);
+  }
+
+  &--lg > * + * {
+    margin-top: var(--space-6);
+  }
+
+  &--xl > * + * {
+    margin-top: var(--space-8);
+  }
+}
+
+// Cluster layout (horizontal wrapping)
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+// Section spacing
+.section {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+
+  @include breakpoint('md') {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+}
+
+// Full bleed (break out of container)
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}

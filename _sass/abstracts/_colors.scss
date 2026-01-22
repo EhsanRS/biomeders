@@ -1,0 +1,154 @@
+// ============================================
+// COLOR SYSTEM DEFINITIONS
+// Claude-inspired warm, approachable palette
+// ============================================
+
+// Light Mode Color Tokens
+$light-colors: (
+  // Backgrounds
+  'bg-primary': #fafaf9,
+  'bg-surface': #ffffff,
+  'bg-code': #f5f5f4,
+  'bg-elevated': #ffffff,
+  'bg-muted': #f5f5f4,
+
+  // Text
+  'text-primary': #1a1a1a,
+  'text-secondary': #6b6b6b,
+  'text-muted': #8b8b8b,
+  'text-inverse': #fafafa,
+
+  // Brand & Accents
+  'accent-primary': #d97706,
+  'accent-primary-hover': #b45309,
+  'accent-secondary': #f59e0b,
+  'link': #2563eb,
+  'link-hover': #1d4ed8,
+  'link-visited': #7c3aed,
+
+  // Borders & Dividers
+  'border-default': #e5e5e5,
+  'border-strong': #d4d4d4,
+  'border-muted': #f0f0f0,
+
+  // Semantic Colors
+  'success': #16a34a,
+  'success-bg': #f0fdf4,
+  'success-border': #86efac,
+  'warning': #ca8a04,
+  'warning-bg': #fefce8,
+  'warning-border': #fde047,
+  'error': #dc2626,
+  'error-bg': #fef2f2,
+  'error-border': #fca5a5,
+  'info': #2563eb,
+  'info-bg': #eff6ff,
+  'info-border': #93c5fd,
+
+  // Callout-specific
+  'callout-note-bg': #eff6ff,
+  'callout-note-border': #3b82f6,
+  'callout-note-icon': #2563eb,
+  'callout-warning-bg': #fffbeb,
+  'callout-warning-border': #f59e0b,
+  'callout-warning-icon': #d97706,
+  'callout-tip-bg': #f0fdf4,
+  'callout-tip-border': #22c55e,
+  'callout-tip-icon': #16a34a,
+  'callout-important-bg': #fef2f2,
+  'callout-important-border': #ef4444,
+  'callout-important-icon': #dc2626,
+  'callout-example-bg': #faf5ff,
+  'callout-example-border': #a855f7,
+  'callout-example-icon': #9333ea,
+
+  // Code Syntax (Light - custom theme)
+  'code-comment': #6b7280,
+  'code-keyword': #7c3aed,
+  'code-string': #059669,
+  'code-number': #d97706,
+  'code-function': #2563eb,
+  'code-variable': #dc2626,
+  'code-operator': #64748b,
+  'code-class': #0891b2,
+  'code-property': #7c3aed,
+
+  // Shadows
+  'shadow-color': rgba(0, 0, 0, 0.08),
+  'shadow-color-strong': rgba(0, 0, 0, 0.12)
+);
+
+// Dark Mode Color Tokens
+$dark-colors: (
+  // Backgrounds
+  'bg-primary': #1c1c1c,
+  'bg-surface': #262626,
+  'bg-code': #2d2d2d,
+  'bg-elevated': #303030,
+  'bg-muted': #363636,
+
+  // Text
+  'text-primary': #fafafa,
+  'text-secondary': #a3a3a3,
+  'text-muted': #737373,
+  'text-inverse': #1a1a1a,
+
+  // Brand & Accents
+  'accent-primary': #fbbf24,
+  'accent-primary-hover': #fcd34d,
+  'accent-secondary': #f59e0b,
+  'link': #60a5fa,
+  'link-hover': #93c5fd,
+  'link-visited': #c4b5fd,
+
+  // Borders & Dividers
+  'border-default': #404040,
+  'border-strong': #525252,
+  'border-muted': #333333,
+
+  // Semantic Colors
+  'success': #4ade80,
+  'success-bg': #14532d,
+  'success-border': #166534,
+  'warning': #fbbf24,
+  'warning-bg': #422006,
+  'warning-border': #713f12,
+  'error': #f87171,
+  'error-bg': #450a0a,
+  'error-border': #7f1d1d,
+  'info': #60a5fa,
+  'info-bg': #1e3a5f,
+  'info-border': #1e40af,
+
+  // Callout-specific
+  'callout-note-bg': #1e3a5f,
+  'callout-note-border': #3b82f6,
+  'callout-note-icon': #60a5fa,
+  'callout-warning-bg': #422006,
+  'callout-warning-border': #f59e0b,
+  'callout-warning-icon': #fbbf24,
+  'callout-tip-bg': #14532d,
+  'callout-tip-border': #22c55e,
+  'callout-tip-icon': #4ade80,
+  'callout-important-bg': #450a0a,
+  'callout-important-border': #ef4444,
+  'callout-important-icon': #f87171,
+  'callout-example-bg': #3b0764,
+  'callout-example-border': #a855f7,
+  'callout-example-icon': #c084fc,
+
+  // Code Syntax (Dark - custom theme)
+  'code-comment': #9ca3af,
+  'code-keyword': #c4b5fd,
+  'code-string': #6ee7b7,
+  'code-number': #fbbf24,
+  'code-function': #93c5fd,
+  'code-variable': #fca5a5,
+  'code-operator': #94a3b8,
+  'code-class': #67e8f9,
+  'code-property': #c4b5fd,
+
+  // Shadows (darker in dark mode)
+  'shadow-color': rgba(0, 0, 0, 0.4),
+  'shadow-color-strong': rgba(0, 0, 0, 0.6)
+);

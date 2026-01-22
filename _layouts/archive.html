@@ -1,0 +1,45 @@
+---
+layout: base
+---
+<div class="container container-prose">
+  <header class="article-header">
+    <h1 class="article-title">{{ page.title | escape }}</h1>
+    {% if page.description %}
+    <p class="text-secondary text-lg">{{ page.description }}</p>
+    {% endif %}
+  </header>
+
+  <div class="archive-content">
+    {{ content }}
+
+    {% assign postsByYear = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+
+    {% for year in postsByYear %}
+    <section class="archive-year mb-8">
+      <h2 class="text-xl font-semibold mb-4 text-accent">{{ year.name }}</h2>
+
+      <ul class="archive-list" style="list-style: none; padding: 0;">
+        {% for post in year.items %}
+        <li class="archive-item" style="padding: var(--space-3) 0; border-bottom: 1px solid var(--border-muted);">
+          <article style="display: flex; flex-direction: column; gap: var(--space-1);">
+            <a href="{{ post.url | relative_url }}" style="font-weight: var(--font-medium); color: var(--text-primary); text-decoration: none;">
+              {{ post.title | escape }}
+            </a>
+            <div style="display: flex; gap: var(--space-4); font-size: var(--text-sm); color: var(--text-muted);">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d" }}</time>
+              {% if post.tags.size > 0 %}
+              <span>{{ post.tags | join: ", " }}</span>
+              {% endif %}
+            </div>
+          </article>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endfor %}
+
+    {% if site.posts.size == 0 %}
+    <p class="text-secondary">No posts yet.</p>
+    {% endif %}
+  </div>
+</div>

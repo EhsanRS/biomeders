@@ -1,0 +1,145 @@
+// ============================================
+// CALLOUT / ADMONITION COMPONENTS
+// Note, Warning, Tip, Important, Example
+// ============================================
+
+@use '../abstracts/mixins' as *;
+
+.callout {
+  position: relative;
+  margin: var(--space-6) 0;
+  padding: var(--space-4);
+  border-left: 4px solid;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  @include transition-colors;
+
+  // Title
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: var(--font-semibold);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  // Icon
+  &__icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  // Content
+  &__content {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin-bottom: var(--space-2);
+    }
+
+    code {
+      font-size: 0.9em;
+    }
+  }
+
+  // Note (blue/info)
+  &--note {
+    background-color: var(--callout-note-bg);
+    border-color: var(--callout-note-border);
+
+    .callout__title {
+      color: var(--callout-note-icon);
+    }
+
+    .callout__icon {
+      color: var(--callout-note-icon);
+    }
+  }
+
+  // Warning (amber/yellow)
+  &--warning {
+    background-color: var(--callout-warning-bg);
+    border-color: var(--callout-warning-border);
+
+    .callout__title {
+      color: var(--callout-warning-icon);
+    }
+
+    .callout__icon {
+      color: var(--callout-warning-icon);
+    }
+  }
+
+  // Tip (green/success)
+  &--tip {
+    background-color: var(--callout-tip-bg);
+    border-color: var(--callout-tip-border);
+
+    .callout__title {
+      color: var(--callout-tip-icon);
+    }
+
+    .callout__icon {
+      color: var(--callout-tip-icon);
+    }
+  }
+
+  // Important (red/danger)
+  &--important {
+    background-color: var(--callout-important-bg);
+    border-color: var(--callout-important-border);
+
+    .callout__title {
+      color: var(--callout-important-icon);
+    }
+
+    .callout__icon {
+      color: var(--callout-important-icon);
+    }
+  }
+
+  // Example (purple)
+  &--example {
+    background-color: var(--callout-example-bg);
+    border-color: var(--callout-example-border);
+
+    .callout__title {
+      color: var(--callout-example-icon);
+    }
+
+    .callout__icon {
+      color: var(--callout-example-icon);
+    }
+  }
+}
+
+// Alternative: Kramdown block IAL syntax support
+// Usage: > Note text {: .callout .callout--note}
+blockquote.callout {
+  margin: var(--space-6) 0;
+  padding: var(--space-4);
+  border-left: 4px solid;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  font-style: normal;
+
+  > p:first-child {
+    font-weight: var(--font-semibold);
+    margin-bottom: var(--space-2);
+  }
+
+  > p:last-child {
+    margin-bottom: 0;
+  }
+}

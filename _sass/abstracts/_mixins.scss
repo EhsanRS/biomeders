@@ -1,0 +1,188 @@
+// ============================================
+// RESPONSIVE MIXINS
+// Mobile-first approach
+// ============================================
+
+@use 'breakpoints' as *;
+@use 'variables' as *;
+
+// Breakpoint mixin (min-width, mobile-first)
+@mixin breakpoint($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (min-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$size}' not found in $breakpoints map.";
+  }
+}
+
+// Max-width breakpoint (for edge cases)
+@mixin breakpoint-down($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (max-width: (map-get($breakpoints, $size) - 1px)) {
+      @content;
+    }
+  }
+}
+
+// Between two breakpoints
+@mixin breakpoint-between($min, $max) {
+  @if map-has-key($breakpoints, $min) and map-has-key($breakpoints, $max) {
+    @media (min-width: map-get($breakpoints, $min)) and (max-width: (map-get($breakpoints, $max) - 1px)) {
+      @content;
+    }
+  }
+}
+
+// Content-width containers
+@mixin content-width($width: 'prose') {
+  @if map-has-key($content-breakpoints, $width) {
+    max-width: map-get($content-breakpoints, $width);
+  } @else {
+    max-width: $width;
+  }
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+
+  @include breakpoint('md') {
+    padding-inline: var(--space-6);
+  }
+
+  @include breakpoint('lg') {
+    padding-inline: var(--space-8);
+  }
+}
+
+// ============================================
+// TYPOGRAPHY MIXINS
+// ============================================
+
+@mixin heading-base {
+  font-family: var(--font-primary);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+  letter-spacing: -0.015em;
+}
+
+@mixin body-text {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+}
+
+@mixin code-text {
+  font-family: var(--font-code);
+  font-size: 0.9em;
+}
+
+// ============================================
+// LAYOUT MIXINS
+// ============================================
+
+@mixin container {
+  width: 100%;
+  max-width: var(--content-prose);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+
+  @include breakpoint('md') {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ============================================
+// COMPONENT MIXINS
+// ============================================
+
+@mixin focus-ring {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+@mixin button-reset {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
+// Touch-friendly tap targets
+@mixin tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+// ============================================
+// TRANSITION MIXINS
+// ============================================
+
+@mixin transition-colors {
+  transition-property: color, background-color, border-color, fill, stroke;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+}
+
+@mixin transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-duration: 300ms;
+}
+
+@mixin transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+}
+
+@mixin transition-all {
+  transition-property: all;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+}
+
+// Motion preference detection
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin motion-safe {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+// Hide at breakpoint
+@mixin hide-below($size) {
+  @include breakpoint-down($size) {
+    display: none !important;
+  }
+}
+
+@mixin hide-above($size) {
+  @include breakpoint($size) {
+    display: none !important;
+  }
+}

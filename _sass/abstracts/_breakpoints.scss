@@ -1,0 +1,20 @@
+// ============================================
+// RESPONSIVE BREAKPOINTS
+// Mobile-first approach with content-driven additions
+// ============================================
+
+$breakpoints: (
+  'xs':     320px,   // Small mobile
+  'sm':     480px,   // Large mobile
+  'md':     768px,   // Tablet portrait
+  'lg':     1024px,  // Tablet landscape / small desktop
+  'xl':     1280px,  // Desktop
+  '2xl':    1536px   // Large desktop
+);
+
+// Content-width breakpoints (for article layout)
+$content-breakpoints: (
+  'prose':     680px,   // Optimal reading width
+  'wide':      900px,   // Extended content (tables, figures)
+  'full':      1200px   // Full-width content
+);

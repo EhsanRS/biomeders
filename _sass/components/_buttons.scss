@@ -1,0 +1,127 @@
+// ============================================
+// BUTTON COMPONENTS
+// ============================================
+
+@use '../abstracts/mixins' as *;
+
+// Base button
+.btn {
+  @include button-reset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  line-height: 1.5;
+  border-radius: var(--radius-md);
+  @include transition-colors;
+  @include tap-target;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  svg {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+  }
+}
+
+// Primary button
+.btn-primary {
+  @extend .btn;
+  color: var(--text-inverse);
+  background-color: var(--accent-primary);
+
+  &:hover:not(:disabled) {
+    background-color: var(--accent-primary-hover);
+  }
+}
+
+// Secondary button
+.btn-secondary {
+  @extend .btn;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+
+  &:hover:not(:disabled) {
+    background-color: var(--bg-muted);
+    border-color: var(--border-strong);
+  }
+}
+
+// Ghost button
+.btn-ghost {
+  @extend .btn;
+  color: var(--text-secondary);
+  background-color: transparent;
+
+  &:hover:not(:disabled) {
+    color: var(--text-primary);
+    background-color: var(--bg-muted);
+  }
+}
+
+// Link button
+.btn-link {
+  @extend .btn;
+  color: var(--link);
+  background-color: transparent;
+  padding: 0;
+  min-height: auto;
+  min-width: auto;
+
+  &:hover:not(:disabled) {
+    color: var(--link-hover);
+    text-decoration: underline;
+  }
+}
+
+// Icon button
+.btn-icon {
+  @include button-reset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  @include transition-colors;
+
+  &:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-muted);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Button sizes
+.btn-sm {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  min-height: 32px;
+}
+
+.btn-lg {
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-base);
+  min-height: 48px;
+}

@@ -1,0 +1,223 @@
+// ============================================
+// SITE HEADER
+// Navigation and branding
+// ============================================
+
+@use '../abstracts/mixins' as *;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-default);
+  @include transition-colors;
+
+  // Backdrop blur effect
+  @supports (backdrop-filter: blur(10px)) {
+    background-color: rgba(var(--bg-primary), 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 var(--space-4);
+  max-width: var(--content-max);
+  margin: 0 auto;
+
+  @include breakpoint('md') {
+    height: 72px;
+    padding: 0 var(--space-6);
+  }
+
+  @include breakpoint('lg') {
+    padding: 0 var(--space-8);
+  }
+}
+
+// Logo / Site title
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: var(--font-bold);
+  font-size: var(--text-lg);
+  letter-spacing: -0.02em;
+
+  &:hover {
+    color: var(--accent-primary);
+  }
+
+  img {
+    height: 32px;
+    width: auto;
+
+    @include breakpoint('md') {
+      height: 36px;
+    }
+  }
+}
+
+// Main navigation
+.main-nav {
+  display: none;
+
+  @include breakpoint('md') {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  border-radius: var(--radius-md);
+  @include transition-colors;
+
+  &:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-muted);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &.active,
+  &[aria-current="page"] {
+    color: var(--accent-primary);
+    background-color: var(--bg-muted);
+  }
+}
+
+// Header actions (theme toggle, etc.)
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+// Mobile menu button
+.mobile-menu-btn {
+  @include button-reset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  @include transition-colors;
+
+  @include breakpoint('md') {
+    display: none;
+  }
+
+  &:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-muted);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// Mobile navigation overlay
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-modal);
+  background-color: var(--bg-primary);
+  padding: var(--space-4);
+  overflow-y: auto;
+
+  &.is-open {
+    display: block;
+  }
+
+  @include breakpoint('md') {
+    display: none !important;
+  }
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: var(--space-4);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  border-bottom: 1px solid var(--border-default);
+  @include transition-colors;
+
+  &:hover {
+    color: var(--accent-primary);
+    background-color: var(--bg-muted);
+  }
+
+  &:first-child {
+    border-top: 1px solid var(--border-default);
+  }
+
+  &.active,
+  &[aria-current="page"] {
+    color: var(--accent-primary);
+  }
+}
+
+// Hamburger icon animation
+.hamburger-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+
+  span {
+    display: block;
+    position: absolute;
+    left: 2px;
+    width: 20px;
+    height: 2px;
+    background-color: currentColor;
+    border-radius: 1px;
+    transition: transform 200ms ease, opacity 200ms ease;
+
+    &:nth-child(1) { top: 6px; }
+    &:nth-child(2) { top: 11px; }
+    &:nth-child(3) { top: 16px; }
+  }
+
+  .is-open & {
+    span:nth-child(1) {
+      transform: translateY(5px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: translateY(-5px) rotate(-45deg);
+    }
+  }
+}

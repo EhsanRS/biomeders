@@ -1,0 +1,21 @@
+# Social Media Links
+links:
+  - platform: twitter
+    url: https://twitter.com/biomeders
+    label: "Twitter"
+    icon: twitter
+
+  - platform: github
+    url: https://github.com/biomeders
+    label: "GitHub"
+    icon: github
+
+  - platform: email
+    url: mailto:me@biomeders.nl
+    label: "Email"
+    icon: mail
+
+  - platform: rss
+    url: /feed.xml
+    label: "RSS Feed"
+    icon: rss

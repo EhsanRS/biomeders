@@ -1,0 +1,181 @@
+// ============================================
+// TABLE OF CONTENTS COMPONENT
+// Sticky TOC with scrollspy highlighting
+// ============================================
+
+@use '../abstracts/mixins' as *;
+
+.toc {
+  font-size: var(--text-sm);
+
+  &__title {
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-4);
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 2px solid var(--border-default);
+  }
+
+  &__item {
+    margin: 0;
+
+    &--nested {
+      .toc__link {
+        padding-left: var(--space-6);
+        font-size: var(--text-xs);
+      }
+    }
+  }
+
+  &__sublist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__link {
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    margin-left: -2px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    line-height: var(--leading-snug);
+    @include transition-colors;
+
+    &:hover {
+      color: var(--text-primary);
+      background-color: var(--bg-muted);
+    }
+
+    // Active state (current section)
+    &--active,
+    &[data-toc-active] {
+      color: var(--accent-primary);
+      border-left-color: var(--accent-primary);
+      font-weight: var(--font-medium);
+    }
+  }
+
+  &__number {
+    display: none; // Hide by default, enable if numbering is desired
+    color: var(--text-muted);
+    margin-right: var(--space-2);
+  }
+
+  // Progress indicator
+  &__progress {
+    margin-top: var(--space-4);
+    height: 2px;
+    background-color: var(--border-default);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  &__progress-bar {
+    height: 100%;
+    background-color: var(--accent-primary);
+    width: 0;
+    transition: width 100ms ease;
+  }
+}
+
+// TOC wrapper in article layout
+.toc-wrapper {
+  // Mobile: collapsible
+  @include breakpoint-down('lg') {
+    margin-bottom: var(--space-6);
+    padding: var(--space-4);
+    background-color: var(--bg-muted);
+    border-radius: var(--radius-lg);
+
+    .toc__title {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0;
+
+      &::after {
+        content: "+";
+        font-size: var(--text-lg);
+        color: var(--text-muted);
+      }
+    }
+
+    .toc__list {
+      display: none;
+      margin-top: var(--space-4);
+    }
+
+    &.is-open {
+      .toc__title::after {
+        content: "−";
+      }
+
+      .toc__list {
+        display: block;
+      }
+    }
+  }
+
+  // Desktop: sticky sidebar
+  @include breakpoint('lg') {
+    .toc {
+      padding: var(--space-4);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+    }
+  }
+}
+
+// Minimal TOC (inline, no sidebar)
+.toc--minimal {
+  margin: var(--space-6) 0;
+  padding: var(--space-4);
+  background-color: var(--bg-muted);
+  border-radius: var(--radius-lg);
+
+  .toc__title {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .toc__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    border-left: none;
+  }
+
+  .toc__item {
+    &--nested {
+      display: none;
+    }
+  }
+
+  .toc__link {
+    padding: var(--space-1) var(--space-3);
+    border-left: none;
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-md);
+    font-size: var(--text-xs);
+
+    &:hover {
+      background-color: var(--bg-elevated);
+    }
+  }
+}

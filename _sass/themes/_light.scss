@@ -1,0 +1,33 @@
+// ============================================
+// LIGHT THEME
+// Default theme - variables defined in _root.scss
+// This file contains any light-mode-specific overrides
+// ============================================
+
+// Light theme is the default, so most styles are in _root.scss
+// This file is for any light-specific component overrides
+
+// Ensure light mode enforced when data-theme="light"
+[data-theme="light"] {
+  color-scheme: light;
+
+  // Syntax highlighting adjustments for light mode
+  .highlight {
+    .c, .c1, .cm { color: var(--code-comment); } // Comments
+    .k, .kd, .kn, .kp, .kr { color: var(--code-keyword); } // Keywords
+    .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr { color: var(--code-string); } // Strings
+    .m, .mf, .mh, .mi, .mo, .il { color: var(--code-number); } // Numbers
+    .nf, .fm { color: var(--code-function); } // Functions
+    .n, .na, .nb, .nc, .no, .nd, .ni, .ne, .nl, .nn, .nt, .nv, .vc, .vg, .vi, .vm { color: var(--text-primary); } // Names
+    .o, .ow { color: var(--code-operator); } // Operators
+    .p { color: var(--text-secondary); } // Punctuation
+    .bp { color: var(--code-class); } // Built-in pseudo
+    .gd { color: var(--error); background-color: var(--error-bg); } // Deleted
+    .gi { color: var(--success); background-color: var(--success-bg); } // Inserted
+  }
+
+  // Mermaid diagram theme
+  .mermaid {
+    // Mermaid will use default theme
+  }
+}

@@ -1,0 +1,18 @@
+# Main Navigation
+main:
+  - title: "Articles"
+    url: /
+  - title: "Archive"
+    url: /archive/
+  - title: "Tags"
+    url: /tags/
+  - title: "About"
+    url: /about/
+
+# Footer Navigation
+footer:
+  - title: "RSS Feed"
+    url: /feed.xml
+  - title: "GitHub"
+    url: https://github.com/biomeders
+    external: true

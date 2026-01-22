@@ -1,0 +1,80 @@
+// ============================================
+// DARK THEME
+// Dark mode specific styles and overrides
+// ============================================
+
+// Dark theme CSS variables are set in _root.scss
+// This file is for any dark-specific component overrides
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  // Image adjustments for dark mode
+  img:not([src*=".svg"]) {
+    filter: brightness(0.95) contrast(1.05);
+  }
+
+  // Code block adjustments
+  pre,
+  .highlight {
+    // Slightly different border in dark mode
+    border-color: var(--border-strong);
+  }
+
+  // Syntax highlighting for dark mode
+  .highlight {
+    .c, .c1, .cm { color: var(--code-comment); font-style: italic; }
+    .k, .kd, .kn, .kp, .kr { color: var(--code-keyword); }
+    .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr { color: var(--code-string); }
+    .m, .mf, .mh, .mi, .mo, .il { color: var(--code-number); }
+    .nf, .fm { color: var(--code-function); }
+    .n, .na, .nb, .nc, .no, .nd, .ni, .ne, .nl, .nn, .nt, .nv, .vc, .vg, .vi, .vm { color: var(--text-primary); }
+    .o, .ow { color: var(--code-operator); }
+    .p { color: var(--text-secondary); }
+    .bp { color: var(--code-class); }
+    .gd { color: var(--error); background-color: var(--error-bg); }
+    .gi { color: var(--success); background-color: var(--success-bg); }
+  }
+
+  // Blockquote adjustments
+  blockquote {
+    border-left-color: var(--accent-primary);
+    background-color: var(--bg-elevated);
+  }
+
+  // Table adjustments
+  table {
+    th {
+      background-color: var(--bg-elevated);
+    }
+  }
+
+  // Selection color adjustment
+  ::selection {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+  }
+
+  // Horizontal rule
+  hr {
+    border-color: var(--border-strong);
+  }
+
+  // Focus ring adjustment
+  :focus-visible {
+    outline-color: var(--accent-primary);
+  }
+}
+
+// Smooth transition when switching themes
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    color 300ms ease,
+    background-color 300ms ease,
+    border-color 300ms ease,
+    fill 300ms ease,
+    stroke 300ms ease !important;
+}

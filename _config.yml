@@ -1,0 +1,117 @@
+# Site Settings
+title: "Biomeders"
+description: "Exploring computational biology, bioinformatics, and scientific research"
+url: "https://biomeders.nl"
+baseurl: ""
+lang: en
+
+# Author Information
+author:
+  name: "BiomedERS"
+  email: "me@biomeders.nl"
+  twitter: "biomeders"
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:title/
+timezone: Europe/Amsterdam
+
+# Kramdown Configuration
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+      css_class: highlight
+  auto_ids: true
+  toc_levels: "2..4"
+  footnote_nr: 1
+
+# Rouge Syntax Highlighting
+rouge:
+  default_lang: plaintext
+
+# Sass/SCSS Configuration
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Plugins (GitHub Pages whitelist only)
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Collections
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+
+# Default Front Matter
+defaults:
+  # Posts
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "BiomedERS"
+      toc: false
+      math: false
+      mermaid: false
+  # Pages
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  # Pages in pages folder
+  - scope:
+      path: "pages"
+    values:
+      layout: "page"
+
+# Pagination (if using jekyll-paginate)
+# paginate: 10
+# paginate_path: "/page/:num/"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - LICENSE
+  - CHANGELOG.md
+  - .gitignore
+  - .sass-cache
+  - .jekyll-cache
+  - .jekyll-metadata
+
+# Include (explicitly include dotfiles if needed)
+include:
+  - _pages
+
+# Feed Configuration
+feed:
+  path: feed.xml
+
+# SEO Tag Configuration
+twitter:
+  username: biomeders
+  card: summary_large_image
+
+# Social Links
+social:
+  name: BiomedERS
+  links:
+    - https://twitter.com/biomeders
+    - https://github.com/biomeders
+
+# Google Analytics (optional - uncomment and add your ID)
+# google_analytics: UA-XXXXXXXX-X

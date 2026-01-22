@@ -1,0 +1,17 @@
+---
+layout: base
+---
+<div class="container container-prose">
+  <article class="page">
+    <header class="article-header">
+      <h1 class="article-title">{{ page.title | escape }}</h1>
+      {% if page.description %}
+      <p class="article-description text-secondary text-lg">{{ page.description }}</p>
+      {% endif %}
+    </header>
+
+    <div class="article-content prose">
+      {{ content }}
+    </div>
+  </article>
+</div>

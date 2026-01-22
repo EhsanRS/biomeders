@@ -1,0 +1,216 @@
+// ============================================
+// TABLE COMPONENT
+// Clean, responsive tables
+// ============================================
+
+@use '../abstracts/mixins' as *;
+
+// Table wrapper for horizontal scroll
+.table-wrapper {
+  margin: var(--space-6) 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-default);
+
+  // Scrollbar styling
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--bg-muted);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 4px;
+
+    &:hover {
+      background: var(--text-muted);
+    }
+  }
+}
+
+// Base table
+.table,
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+// Table header
+thead {
+  background-color: var(--bg-muted);
+  border-bottom: 2px solid var(--border-default);
+
+  th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+}
+
+// Table body
+tbody {
+  tr {
+    border-bottom: 1px solid var(--border-default);
+    @include transition-colors;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: var(--bg-muted);
+    }
+  }
+
+  td {
+    padding: var(--space-3) var(--space-4);
+    color: var(--text-primary);
+    vertical-align: top;
+  }
+}
+
+// Numeric columns
+.numeric,
+td[data-type="number"] {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-code);
+}
+
+// Table caption
+caption,
+.table__caption {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-default);
+
+  .table__number {
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+  }
+}
+
+// Striped rows
+.table--striped {
+  tbody tr:nth-child(even) {
+    background-color: var(--bg-muted);
+  }
+}
+
+// Compact table
+.table--compact {
+  th, td {
+    padding: var(--space-2) var(--space-3);
+  }
+}
+
+// Sortable table header
+.table__sort-btn {
+  @include button-reset;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+
+  &:hover {
+    color: var(--accent-primary);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.table__sort-icon {
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
+
+  [data-sort="asc"] &,
+  [data-sort="desc"] & {
+    opacity: 1;
+    color: var(--accent-primary);
+  }
+}
+
+// Responsive table (stacked on mobile)
+@include breakpoint-down('md') {
+  .table--responsive {
+    thead {
+      display: none;
+    }
+
+    tbody {
+      tr {
+        display: block;
+        padding: var(--space-3);
+        border-bottom: 1px solid var(--border-default);
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      td {
+        display: flex;
+        justify-content: space-between;
+        padding: var(--space-2) 0;
+        border-bottom: 1px solid var(--border-muted);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &::before {
+          content: attr(data-label);
+          font-weight: var(--font-semibold);
+          color: var(--text-secondary);
+          flex-shrink: 0;
+          margin-right: var(--space-4);
+        }
+      }
+    }
+  }
+}
+
+// Status badges in tables
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-0\.5) var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  border-radius: var(--radius-full);
+
+  &--success {
+    color: var(--success);
+    background-color: var(--success-bg);
+  }
+
+  &--warning {
+    color: var(--warning);
+    background-color: var(--warning-bg);
+  }
+
+  &--error {
+    color: var(--error);
+    background-color: var(--error-bg);
+  }
+
+  &--info {
+    color: var(--info);
+    background-color: var(--info-bg);
+  }
+}
