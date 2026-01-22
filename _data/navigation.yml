@@ -11,8 +11,6 @@ main:
 
 # Footer Navigation
 footer:
-  - title: "RSS Feed"
-    url: /feed.xml
   - title: "GitHub"
     url: https://github.com/biomeders
     external: true

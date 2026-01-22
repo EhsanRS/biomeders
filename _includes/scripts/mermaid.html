@@ -2,6 +2,15 @@
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
 
+  // Convert code blocks with language-mermaid to mermaid divs
+  document.querySelectorAll('code.language-mermaid').forEach((codeBlock) => {
+    const pre = codeBlock.parentElement;
+    const div = document.createElement('div');
+    div.className = 'mermaid';
+    div.textContent = codeBlock.textContent;
+    pre.parentNode.replaceChild(div, pre);
+  });
+
   // Get current theme
   const theme = document.documentElement.getAttribute('data-theme');
   const mermaidTheme = theme === 'dark' ? 'dark' : 'default';
@@ -20,21 +29,19 @@
         const newTheme = document.documentElement.getAttribute('data-theme');
         const newMermaidTheme = newTheme === 'dark' ? 'dark' : 'default';
 
-        // Update mermaid config and re-render
-        mermaid.initialize({
-          startOnLoad: false,
-          theme: newMermaidTheme,
-          securityLevel: 'loose',
-          fontFamily: 'Inter, system-ui, sans-serif'
-        });
-
-        // Re-render all mermaid diagrams by triggering mermaid.run()
-        // Store original code in data attribute for re-rendering
+        // Re-render all mermaid diagrams
         document.querySelectorAll('.mermaid').forEach((el) => {
           const code = el.getAttribute('data-original') || el.textContent;
           el.setAttribute('data-original', code);
           el.removeAttribute('data-processed');
           el.textContent = code;
+        });
+
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: newMermaidTheme,
+          securityLevel: 'loose',
+          fontFamily: 'Inter, system-ui, sans-serif'
         });
         mermaid.run();
       }

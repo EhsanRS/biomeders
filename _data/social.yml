@@ -14,8 +14,3 @@ links:
     url: mailto:me@biomeders.nl
     label: "Email"
     icon: mail
-
-  - platform: rss
-    url: /feed.xml
-    label: "RSS Feed"
-    icon: rss
